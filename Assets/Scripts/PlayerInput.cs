@@ -18,6 +18,10 @@ public class PlayerInput : MonoBehaviour
         {
             _mover.Move(Input.GetAxis("Horizontal"));
         }
+        else
+        {
+            _mover.Move(0);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

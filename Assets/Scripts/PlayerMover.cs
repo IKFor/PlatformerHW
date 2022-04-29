@@ -7,14 +7,17 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
+    [SerializeField] private Animator _animator;
 
     private readonly RaycastHit2D[] _results = new RaycastHit2D[1];
 
     private Rigidbody2D _rb2D;
+    private SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Jump()
@@ -27,6 +30,20 @@ public class PlayerMover : MonoBehaviour
 
     public void Move(float direction)
     {
-        _rb2D.velocity = new Vector2(_speed * direction, _rb2D.velocity.y);
+        if (_rb2D.Cast(new Vector2(direction, 0), _results, 0.1f) == 0)
+        {
+            _rb2D.velocity = new Vector2(_speed * direction, _rb2D.velocity.y);
+
+            _animator.SetFloat("speed", _rb2D.velocity.x);
+
+            if (_rb2D.velocity.x < 0)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
+        }
     }
 }
