@@ -7,6 +7,7 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
+    [SerializeField] private float _minMoveDistance;
     [SerializeField] private Animator _animator;
 
     private readonly RaycastHit2D[] _results = new RaycastHit2D[1];
@@ -22,7 +23,7 @@ public class PlayerMover : MonoBehaviour
 
     public void Jump()
     {
-        if (_rb2D.Cast(-transform.up, _results, 0.1f) > 0)
+        if (_rb2D.Cast(-transform.up, _results, _minMoveDistance) > 0)
         {
             _rb2D.AddForce(Vector3.up * _jumpForce);
         }
@@ -30,7 +31,7 @@ public class PlayerMover : MonoBehaviour
 
     public void Move(float direction)
     {
-        if (_rb2D.Cast(new Vector2(direction, 0), _results, 0.1f) == 0)
+        if (_rb2D.Cast(new Vector2(direction, 0), _results, _minMoveDistance) == 0)
         {
             _rb2D.velocity = new Vector2(_speed * direction, _rb2D.velocity.y);
 

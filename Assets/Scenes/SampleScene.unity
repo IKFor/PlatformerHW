@@ -630,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpForce: 275
   _speed: 2.8
+  _minMoveDistance: 0.1
   _animator: {fileID: 405046246}
 --- !u!50 &405046244
 Rigidbody2D:

@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\PlayerMover.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
-    <Compile Include="Assets\Scripts\PlayerMoverNew.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
