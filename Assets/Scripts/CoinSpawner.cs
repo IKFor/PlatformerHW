@@ -14,11 +14,10 @@ public class CoinSpawner : MonoBehaviour
 
     private void Update()
     {
-       if (!_coin && _isSpawned)
+        if (!_coin && _isSpawned)
         {
             StartCoroutine(Spawn());
         }
-            
     }
 
     private IEnumerator Spawn()
