@@ -31,6 +31,6 @@ public class PlayerInput : MonoBehaviour
 
     public void Stop()
     {
-        this.enabled = false;
+        enabled = false;
     }
 }

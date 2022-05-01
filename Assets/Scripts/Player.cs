@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Coin>())
+        if (collision.TryGetComponent<Coin>(out _))
         {
             AddCoin(collision.GetComponent<Coin>().PickUp());
         }
 
-        if (collision.GetComponent<Enemy>())
+        if (collision.TryGetComponent<Enemy>(out _))
         {
             _die?.Invoke();
         }

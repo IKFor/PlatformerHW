@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
 
     public int PickUp()
     { 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
         return _value;
     }

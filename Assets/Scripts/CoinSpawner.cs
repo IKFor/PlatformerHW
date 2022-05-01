@@ -10,31 +10,26 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField] private int _spawnDelay = 2;
 
     private Coin _coin;
-    private float _timeToSpawn;
-
-    private void Awake()
-    {
-        Spawn();
-    }
+    private bool _isSpawned = true;
 
     private void Update()
     {
-        if (!_coin)
+       if (!_coin && _isSpawned)
         {
-            _timeToSpawn += Time.deltaTime;
-
-            if (_timeToSpawn >= _spawnDelay)
-            {
-                _timeToSpawn = 0;
-                Spawn();
-            }
+            StartCoroutine(Spawn());
         }
+            
     }
 
-    public void Spawn()
+    private IEnumerator Spawn()
     {
-        _coin = Instantiate(_template, transform.position, Quaternion.identity);
+        _isSpawned = false;
 
+        yield return new WaitForSeconds(_spawnDelay);
+
+        _coin = Instantiate(_template, transform.position, Quaternion.identity);
         _coin.transform.SetParent(transform);
+
+        _isSpawned = true;
     }
 }
